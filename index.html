@@ -2,124 +2,235 @@
 <html lang="en">
 
 <head>
-  <!-- Favicons -->
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
-  <link rel="manifest" href="assets/site.webmanifest">
-  <link rel="mask-icon" href="assets/safari-pinned-tab.svg" color="#5bbad5">
-  <meta name="msapplication-TileColor" content="#da532c">
-  <meta name="theme-color" content="#ffffff">
-  <meta http-equiv=" Content-Type" content="text/html;charset=utf-8" />
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+    <link rel="manifest" href="assets/site.webmanifest">
+    <link rel="mask-icon" href="assets/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <meta http-equiv=" Content-Type" content="text/html;charset=utf-8"/>
 
-  <title>ETHR Revocation Registry</title>
-  <h2 id="subtitle">A registry-based revocation mechanism for Verifiable Credentials</h2>
-  
-  <script src="https://www.w3.org/Tools/respec/respec-w3c" class="remove" defer></script>
-  <script type="text/javascript" class="remove">
-    var respecConfig = {
-      specStatus: 'unofficial',
-      shortName: 'ethr-revocation-registry',
-      latestVersion: 'https://spherity.github.io/vc-ethr-status-registry/',
-      lint: {
-        "check-punctuation": true,
-        "no-http-props": true
-      },
-      editors: [
-        {
-          name: 'Philipp Bolte',
-          url: 'https://bolte.cloud/',
-          company: 'Spherity',
-          companyURL: 'https://spherity.com',
-        },
-        {
-          name: 'Dennis von der Bey',
-          url: 'https://www.vonderbey.eu',
-          company: 'Spherity',
-          companyURL: 'https://spherity.com',
-        },
-        {
-          name: 'Lauritz Leifermann',
-          company: 'Spherity',
-          companyURL: 'https://spherity.com',
-        },
-      ],
-      authors: [
-        {
-          name: 'Philipp Bolte',
-          url: 'https://bolte.cloud/',
-          company: 'Spherity',
-          companyURL: 'https://spherity.com',
-        },
-        {
-          name: 'Dennis von der Bey',
-          url: 'https://www.vonderbey.eu',
-          company: 'Spherity',
-          companyURL: 'https://spherity.com',
-        },
-        {
-          name: 'Lauritz Leifermann',
-          company: 'Spherity',
-          companyURL: 'https://wspherity.com',
-        },
-      ],
-      github: 'https://github.com/spherity/vc-ethr-status-registry/',
-      logos: [
-        {
-          src: "assets/spherity-logo.png",
-          url: "https://github.com/spherity/vc-ethr-status-registry/",
-          alt: "Spherity Logo",
-          width: 100,
-          height: 100,
-          id: "example-company-logo",
-        },
-      ],
-      otherLinks: [
-        {
-          key: "Document Status",
-          data: [
-            {
-              value: "Draft",
-            },
-          ],
-        },
-      ],
-      maxTocLevel: 2
-    };
-  </script>
-  <style>
-    body {
-      background: white !important;
-    }
+    <title>ETHR Revocation Registry 2022</title>
+    <h2 id="subtitle">A registry-based revocation mechanism for Verifiable Credentials</h2>
 
-    table {
-      width: 100%;
-    }
-  </style>
+    <script src="https://www.w3.org/Tools/respec/respec-w3c" class="remove" defer></script>
+    <script type="text/javascript" class="remove">
+      var respecConfig = {
+        specStatus: 'unofficial',
+        shortName: 'ethr-revocation-registry',
+        latestVersion: 'https://spherity.github.io/vc-ethr-status-registry/',
+        lint: {
+          "check-punctuation": true,
+          "no-http-props": true
+        },
+        editors: [
+          {
+            name: 'Philipp Bolte',
+            url: 'https://bolte.cloud/',
+            company: 'Spherity',
+            companyURL: 'https://spherity.com',
+          },
+          {
+            name: 'Dennis von der Bey',
+            url: 'https://www.vonderbey.eu',
+            company: 'Spherity',
+            companyURL: 'https://spherity.com',
+          },
+          {
+            name: 'Lauritz Leifermann',
+            company: 'Spherity',
+            companyURL: 'https://spherity.com',
+          },
+        ],
+        authors: [
+          {
+            name: 'Philipp Bolte',
+            url: 'https://bolte.cloud/',
+            company: 'Spherity',
+            companyURL: 'https://spherity.com',
+          },
+          {
+            name: 'Dennis von der Bey',
+            url: 'https://www.vonderbey.eu',
+            company: 'Spherity',
+            companyURL: 'https://spherity.com',
+          },
+          {
+            name: 'Lauritz Leifermann',
+            company: 'Spherity',
+            companyURL: 'https://wspherity.com',
+          },
+        ],
+        github: 'https://github.com/spherity/vc-ethr-status-registry/',
+        logos: [
+          {
+            src: "assets/spherity-logo.png",
+            url: "https://github.com/spherity/vc-ethr-status-registry/",
+            alt: "Spherity Logo",
+            width: 100,
+            height: 100,
+            id: "example-company-logo",
+          },
+        ],
+        otherLinks: [
+          {
+            key: "Document Status",
+            data: [
+              {
+                value: "Draft",
+              },
+            ],
+          },
+        ],
+        maxTocLevel: 2
+      };
+    </script>
+    <style>
+        body {
+            background: white !important;
+        }
+
+        table {
+            width: 100%;
+        }
+    </style>
 </head>
 
 <body>
-  <p class="copyright">Copyright © 2022 Named editors and <a href="https://spherity.com">Spherity</a>.</p>
-  <section id="abstract">
+<p class="copyright">Copyright © 2022 Named editors and <a href="https://spherity.com">Spherity</a>.</p>
+<section id="abstract">
     <p>
-      This specification describes a decentralized, registry-based revocation mechanism for Verifiable Credentials on Ethereum. It is based on the EIP-5539 standard draft and leverages its described revocation registry smart contract in which revocation information can be stored and modified in an unlimited amount of revocation lists residing in namespaces.
+        This specification describes a decentralized, registry-based revocation mechanism for Verifiable Credentials on
+        Ethereum. It is based on the EIP-5539 standard draft and leverages its described revocation registry smart
+        contract in which revocation information can be stored and modified in an unlimited amount of revocation lists
+        residing in namespaces.
     </p>
-  </section>
-  <section id="sotd">
+</section>
+<section id="sotd">
     <p>
-      Comments regarding all aspects of this document are welcome.
-      Please file issues directly on
-      <a href="https://github.com/spherity/vc-ethr-status-registry/">GitHub</a>
+        Comments regarding all aspects of this document are welcome.
+        Please file issues directly on
+        <a href="https://github.com/spherity/vc-ethr-status-registry/">GitHub</a>
     </p>
-  </section>
-  <section>
-    <h2>An example section</h2>
+</section>
+<section>
+    <h2>Introduction</h2>
+    <p><i>This section is non-normative.</i></p>
+    <p>
+        The Verifiable Credentials specification describes revocation as one of the key parts of the Verifiable
+        Credentials lifecycle. It allows issuers of credentials to revoke them when appropriate in a way that is
+        transparent to potential verifiers in the future.
+        The VC specification however does not describe a revocation method and only focuses on the general idea with
+        some general requirements and considerations.
+    </p>
+    <p>
+        Those considerations mainly include privacy concerns in the form of possible de-anonymization attacks by an
+        issuer when a verifier checks the revocation status of a credential with it. In the worst case, an issuer might
+        figure out what credential holder presented which credential to which verifier and when. This especially holds
+        true for revocation methods storing the revocation registry on an issuer-owned and centralized revocation
+        service.
+        Revocation methods like Status List 2021 leverage such an infrastructure but trys to minimize privacy concerns
+        by using revocation lists encoded in a bitstring. Following this pattern, a verifier verifys a credentials by
+        retrieving the full revocation list from the issuers server and reading the credentials status from the correct
+        position in the bitstring.
+        For most applications, this approach is sufficient from a privacy perspective but falls short in other critical
+        points.
+    </p>
+    <p>
+        The largest problem with traditional revocation lists is the centralized aspect of them. Most of them rely on
+        HTTP servers as well as caching and are therefore vulnerable to known attack vectors, which include
+        unavailability or illegal modification of the revocation list. Depending on the ecosystem, an unavailable and
+        untrustworthy revocation list may make verifications impossible for an undefined timespan and therefore present
+        an unacceptable business risk. Other noteworthy aspects are historical preservation of revocation information,
+        the burden of owning and maintaining revocation infrastructure, and inflexibility in terms of revocation list
+        management features (e.g. delegation).
+    </p>
+    <p>
+        The rest of the document proposes a new revocation method based on the EIP-5539 standard draft that leverages a
+        decentralized revocation registry inside an Ethereum smart contract. It allows any Ethereum address to manage an
+        unlimited number of revocation lists in its namespace where each list can hold and unlimited amount of
+        revocation keys. Because revocation lists are hosted in the blockchain, issuers can't correlate sensitive
+        information anymore. Other positive aspects are the increased herd privacy due to huge namespaces and revocation
+        lists, the infrastructure being always available, infrastructure does not have to be maintained by issuers, and
+        the ability program smart management features into the registry itself (meta transactions, owner changes,
+        delegation, ...).
+    <h3>Terminology</h3>
+    <h3>Concept</h3>
+</section>
+<section>
+    <h2>Data Model</h2>
     <p>Some text.</p>
-  </section>
-  <section>
-    <h2>Another example section</h2>
+    <table class="simple">
+        <thead>
+        <tr>
+            <th style="white-space: nowrap">Value</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><code>id</code>
+            </td>
+            <td>
+        </tr>
+        </td>
+        <tr>
+            <td><code>type</code></td>
+            <td>
+            </td>
+        </tr>
+        <tr>
+            <td><code>chainId</code></td>
+            <td>
+            </td>
+        </tr>
+        <tr>
+            <td><code>namespace</code></td>
+            <td>
+            </td>
+        </tr>
+        <tr>
+            <td><code>revocationList</code></td>
+            <td>
+            </td>
+        </tr>
+        <tr>
+            <td><code>revocationKey</code></td>
+            <td>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
     <p>Some text.</p>
-  </section>
+    <pre class="example nohighlight" title="Example EthrRevocationRegistry2022">
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://w3id.org/vc/status-list/2021/v1"
+  ],
+  "id": "https://example.com/credentials/23894672394",
+  "type": ["VerifiableCredential"],
+  "issuer": "did:example:12345",
+  "issued": "2021-04-05T14:27:42Z",
+  <span class="highlight">"credentialStatus": {
+    "id": "urn:uuid:b991684c-8461-4190-8c90-916505bc4df7"
+    "type": "EthrRevocationRegistry2022",
+    "chainId": 5,
+    "namespace": "0x0000000000000000000000000000000000000000",
+    "revocationList": "0x3458b9bfc7963978b7d40ef225177c45193c2889902357db3b043a4e319a9628",
+    "revocationKey": "0x89343794d2fb7dd5d0fba9593a4bb13beaff93a61577029176d0117b0c53b8e6"
+  }</span>,
+  "credentialSubject": {
+    "id": "did:example:6789",
+    "type": "Person"
+  },
+  "proof": { <span class="comment">...</span> }
+}
+    </pre>
+</section>
 </body>
 
 </html>
