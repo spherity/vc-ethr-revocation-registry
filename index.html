@@ -115,9 +115,8 @@
         <a href="https://github.com/spherity/vc-ethr-status-registry/">GitHub</a>
     </p>
 </section>
-<section>
+<section class="informative">
     <h2>Introduction</h2>
-    <p><i>This section is non-normative.</i></p>
     <p>
         The Verifiable Credentials specification describes revocation as one of the key parts of the Verifiable
         Credentials lifecycle. It allows issuers of credentials to revoke them when appropriate in a way that is
@@ -126,14 +125,14 @@
         some general requirements and considerations.
     </p>
     <p>
-        Those considerations mainly include privacy concerns in the form of possible de-anonymization attacks by an
+        Those considerations mainly include privacy concerns in the form of possible deanonymization attacks by an
         issuer when a verifier checks the revocation status of a credential with it. In the worst case, an issuer might
         figure out what credential holder presented which credential to which verifier and when. This especially holds
-        true for revocation methods storing the revocation registry on an issuer-owned and centralized revocation
+        true for revocation methods storing the revocation list on an issuer-owned and centralized revocation
         service.
-        Revocation methods like Status List 2021 leverage such an infrastructure but trys to minimize privacy concerns
-        by using revocation lists encoded in a bitstring. Following this pattern, a verifier verifys a credentials by
-        retrieving the full revocation list from the issuers server and reading the credentials status from the correct
+        Revocation methods like Status List 2021 leverage such an infrastructure but try to minimize privacy concerns
+        by using revocation lists encoded in a bitstring. Following this pattern, a verifier verifies a credential by
+        retrieving the full revocation list from the issuers server and reading the credential's status from the correct
         position in the bitstring.
         For most applications, this approach is sufficient from a privacy perspective but falls short in other critical
         points.
@@ -150,14 +149,20 @@
     <p>
         The rest of the document proposes a new revocation method based on the EIP-5539 standard draft that leverages a
         decentralized revocation registry inside an Ethereum smart contract. It allows any Ethereum address to manage an
-        unlimited number of revocation lists in its namespace where each list can hold and unlimited amount of
-        revocation keys. Because revocation lists are hosted in the blockchain, issuers can't correlate sensitive
-        information anymore. Other positive aspects are the increased herd privacy due to huge namespaces and revocation
-        lists, the infrastructure being always available, infrastructure does not have to be maintained by issuers, and
-        the ability program smart management features into the registry itself (meta transactions, owner changes,
-        delegation, ...).
+        unlimited number of revocation lists in its namespace, where each list can hold an unlimited amount of
+        revocation keys. Because revocation lists are hosted on the blockchain, issuers can't correlate sensitive
+        information anymore, like at what moment a verifier retrieves revocation information. Other positive aspects
+        are the increased herd privacy due to huge namespaces and revocation lists, the infrastructure being always available,
+        infrastructure does not have to be maintained by issuers, and the ability to program smart management features
+        into the registry itself (meta transactions, owner changes, delegation, ...).
+</section>
+<section class="informative">
     <h3>Terminology</h3>
+    <div data-include="terms.html"></div>
+</section>
+<section class="informative">
     <h3>Concept</h3>
+</section>
 </section>
 <section>
     <h2>Data Model</h2>
