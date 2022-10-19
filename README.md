@@ -1,37 +1,9 @@
-# A template for Spherity proposals
+# EthrRevocationRegistry2022 for Verifiable Credentials
 
-This repository establishes a base for Spherity proposals and drafts using [respec](https://respec.org/docs/) as a foundation. 
+This specification describes a decentralized, registry-based revocation mechanism for Verifiable Credentials on Ethereum. It is based on the EIP-5539 standard draft and leverages its described revocation registry smart contract in which revocation information can be stored and modified in an unlimited amount of revocation lists residing in namespaces.
 
-This repo includes a number of defaults for the respec template. See ```respecConfig``` for the exact configuration. 
-## 🔋 Getting started
+https://spherity.github.io/vc-ethr-revocation-registry/
 
-1. Click on 'Use this template' in the github interface
-2. Create the new templated repository in your user namespace or Spherity namespace
-3. Open ```index.html``` and replace the following variables with your content
-   1. Spec Information: 
-      - ```SPEC_TITLE```
-      - ```SPEC_SUBTITLE``` 
-   2. Author Information: 
-      - ```YOUR_NAME```
-      - ```YOUR_WEBSITE``` 
-      - ```YOUR_COMPANY```
-      - ```YOUR_COMPANY_WEBSITE```
-   3. Repository Information: 
-      - ```REPO_LINK```
-      - ```PAGE_URL```
-4. Open the ```index.html``` file in your local browser to preview your draft
-5. Once you are ready, push your changes to your repo. 
+We encourage contributions to this specification. To propose a change, please submit a pull request to the repository.
 
-## ✍️ Working with this template
-
-Please see the [respec documentation](https://respec.org/docs/#sections) for an in-depth explanation of all possible options for writing your 
-proposal. However, a good base can be established by expanding your abstraction definition and including new sections for your proposal.
-Some examples are already included in ```index.html```. 
-
-## 📖 Github Pages
-
-When you update the ```main``` branch of your proposal repository, the resulting content will automatically published to a github page that you can share. Using the default configuration your page should be accessible at:
-
-```https://<user>.github.io/<repository>```
-
-To activate this feature navigate to Settings > Pages and define an action.
+Please note that this specification is still in draft status and not endorsed by W3C.
