@@ -1,0 +1,18 @@
+{
+  "@context": {
+      "@protected": true,
+      "EthrRevocationRegistry": {
+        "@id": "https://w3id.org/identity/v1",
+        "@context": {
+            "@protected": true,
+            "id": "@id",
+            "type": "@type",
+            "chainId": "https://w3id.org/identity/v1/chainId",
+            "registry": "https://w3id.org/identity/v1/registry",
+            "namespace": "https://w3c-ccg.github.io/vc-status-rl-2020/#namespace",
+            "revocationList": "https://w3c-ccg.github.io/vc-status-rl-2020/#revocationList",
+            "revocationKey": "https://w3c-ccg.github.io/vc-status-rl-2020/#revocationKey"
+        }
+      }
+  }
+}
