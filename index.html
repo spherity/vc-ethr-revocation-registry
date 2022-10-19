@@ -168,11 +168,12 @@
 <section class="informative">
     <h3>Concept</h3>
     This section describes the core concepts of this specification. Revocations are stored in <a>revocation lists</a>
-    as a key-value pair of a bytes32 string to a boolean value. The boolean value indicates the status of the
-    <a>revocation key</a>where true is revoked. <a>Revocation lists</a> are identified by a bytes32 string key that are
-    part of a <a>namespace</a>. <a>Namespaces</a> are represented by Ethereum addresses and can, due to the bytes32
-    size of revocation list keys, can contain an unlimited amount of <a>revocation lists</a> that are implicitly owned
-    by the <a>namespaces</a>address. The described behaviour can be seen in figure 1.
+    as a key-value pair of a <code>bytes32</code> string to a boolean value. The boolean value indicates the status of
+    the <a>revocation key</a>where true is revoked. <a>Revocation lists</a> are identified by a <code>bytes32</code>
+    string key that are part of a <a>namespace</a>. <a>Namespaces</a> are represented by Ethereum addresses and can,
+    due to the <code>bytes32</code> size of revocation list keys, can contain an unlimited amount of
+    <a>revocation lists</a> that are implicitly owned by the <a>namespaces</a> address. The described behaviour can be
+    seen in figure 1.
 
     <figure id="bitstring">
         <img style="margin: auto; display: block; width: 100%;"
@@ -193,7 +194,8 @@
     revoked, data is written to the chain. Consequently, revocation information of a credential is only recorded
     on-chain when its status is changed.
 
-    The underlying <a>registry</a> also provides multiple management features for <a>namespace</a> owners. These features
+    The underlying <a>registry</a> also provides multiple management features for <a>namespace</a> owners. These
+    features
     include:
     <ul>
         <li>Delegation: A <a>namespace</a> owner can add <a>delegates</a> to <a>revocation lists</a> it controls to
@@ -212,7 +214,11 @@
 </section>
 <section>
     <h2>Data Model</h2>
-    <p>Some text.</p>
+    <p>
+        When a credential issuer wants to issue a revocable credential, it <i>MAY</i> embed a
+        <code>credentialStatus</code> property to credential. The following table defines the data model for this
+        specification.
+    </p>
     <table class="simple">
         <thead>
         <tr>
@@ -225,55 +231,80 @@
             <td><code>id</code>
             </td>
             <td>
+                The <code>id</code> property <i>MUST</i> be a URL that uniquely identifies the status information
+                associated with the revocable credential.
+            </td>
         </tr>
         </td>
         <tr>
             <td><code>type</code></td>
             <td>
+                The type property MUST be <code>EthrRevocationRegistry2022</code>.
+            </td>
+        </tr>
+        <tr>
+            <td><code>registry</code></td>
+            <td>
+                The <code>registry</code> property <i>MUST</i> be an Ethereum address that uniquely identifies the
+                <a>registry</a> that contains all revocation information.
             </td>
         </tr>
         <tr>
             <td><code>chainId</code></td>
             <td>
+                The <code>chainId</code> property <i>MUST</i> be a number that represents the chain id of the
+                Ethereum network where the <a>registry</a> is deployed to.
             </td>
         </tr>
         <tr>
             <td><code>namespace</code></td>
             <td>
+                The <code>namespace</code> property <i>MUST</i> be a string that represents the Ethereum address of
+                the <a>namespace</a> that the <a>revocation list</a> is part of. In most cases, this is the issuers
+                Ethereum address.
             </td>
         </tr>
         <tr>
             <td><code>revocationList</code></td>
             <td>
+                The <code>revocationList</code> property <i>MUST</i> be a <code>bytes32</code> string that represents the key of the
+                <a>revocation list</a> that the <a>revocation key</a> is part of. The <code>Keccak256</code> hashing algorithm
+                <i>CAN</i> be used to generate a fitting value.
             </td>
         </tr>
         <tr>
             <td><code>revocationKey</code></td>
             <td>
+                The <code>revocationKey</code> property <i>MUST</i> be a <code>bytes32</code> string that represents the key that is
+                used to check the revocation status of the credential. The <code>Keccak256</code> hashing algorithm <i>CAN</i> be
+                used to generate a fitting value.
             </td>
         </tr>
         </tbody>
     </table>
 
-    <p>Some text.</p>
-    <pre class="example nohighlight" title="Example EthrRevocationRegistry2022">
+    <p>The above defined properties are needed to resolve the credentials status on the registry. An example usage of
+        those properties can be seen in example 1 below.</p>
+    <pre class="example" title="Example EthrRevocationRegistry2022">
 {
   "@context": [
     "https://www.w3.org/2018/credentials/v1",
     "https://w3id.org/vc/status-list/2021/v1"
+    "https://spherity.github.io/vc-ethr-revocation-registry/schemas/ethr-revocation-registry.jsonld"
   ],
-  "id": "https://example.com/credentials/23894672394",
+  "id": "https://example.com/credentials/1",
   "type": ["VerifiableCredential"],
   "issuer": "did:example:12345",
-  "issued": "2021-04-05T14:27:42Z",
-  <span class="highlight">"credentialStatus": {
-    "id": "urn:uuid:b991684c-8461-4190-8c90-916505bc4df7"
+  "issued": "2022-03-26T14:27:42Z",
+  "credentialStatus": {
+    "id": "https://example.com/credentials/1/status"
     "type": "EthrRevocationRegistry2022",
-    "chainId": 5,
+    "registry": "0x534b89b798e45929A24a217d7324EAd0EAF9413E",
+    "chainId": 1,
     "namespace": "0x0000000000000000000000000000000000000000",
     "revocationList": "0x3458b9bfc7963978b7d40ef225177c45193c2889902357db3b043a4e319a9628",
     "revocationKey": "0x89343794d2fb7dd5d0fba9593a4bb13beaff93a61577029176d0117b0c53b8e6"
-  }</span>,
+  },
   "credentialSubject": {
     "id": "did:example:6789",
     "type": "Person"
@@ -281,6 +312,13 @@
   "proof": { <span class="comment">...</span> }
 }
     </pre>
+</section>
+
+<section>
+    <h2>Privacy Considerations</h2>
+    <p class="issue">
+        Write privacy considerations.
+    </p>
 </section>
 </body>
 
