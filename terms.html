@@ -3,9 +3,21 @@
 </p>
 
 <dl class="termlist">
+    <dt><dfn data-lt="delegate">delegate</dfn></dt>
+    <dd>
+        An Ethereum address that received temporary access to a <a>revocation lists</a> in a <a>namespace</a>. It has to be granted by the current <a>owner</a> of the <a>revocation list</a> in question. <a>Delegates</a> can change statuses of credentials in foreign <a>revocation lists</a>.
+    </dd>
     <dt><dfn data-lt="namespace">namespace</dfn></dt>
     <dd>
         A <a>namespace</a> is a representation of an Ethereum address inside the registry that corresponds to its <a>owners</a> address. All <a>revocation lists</a> within a <a>namespace</a> are initially owned by the <a>namespace</a>’s <a>owner</a> address.
+    </dd>
+    <dt><dfn data-lt="owner">owner</dfn></dt>
+    <dd>
+        An Ethereum address that has modifying rights to <a>revocation lists</a> within its own and possibly foreign <a>namespaces</a>. An <a>owner</a> can give up modifying rights of <a>revocation lists</a> within its <a>namespace</a> by transferring ownership to another address, or invite other addresses as <a>delegates</a>.
+    </dd>
+    <dt><dfn data-lt="registry">registry</dfn></dt>
+    <dd>
+        A <a>registry</a> is a deployed smart contract containing the code for EthrRevocationRegistry2022. It is the central point of interaction with <a>namespaces</a> and <a>revocation lists</a> that are stored in it and offers a suite of management features according to EIP-5539.
     </dd>
     <dt><dfn data-lt="revocation list">revocation list</dfn></dt>
     <dd>
@@ -14,13 +26,5 @@
     <dt><dfn data-lt="revocation key">revocation key</dfn></dt>
     <dd>
         A <a>revocation list</a> can contain a number of <a>revocation keys</a> of the type bytes32. In combination with the <a>namespace</a> address and the <a>revocation list</a> key, it resolves to a boolean value that indicates whether the <a>revocation key</a> is revoked or not.
-    </dd>
-    <dt><dfn data-lt="owner">owner</dfn></dt>
-    <dd>
-        An Ethereum address that has modifying rights to <a>revocation lists</a> within its own and possibly foreign <a>namespaces</a>. An <a>owner</a> can give up modifying rights of <a>revocation lists</a> within its <a>namespace</a> by transferring ownership to another address, or invite other addresses as <a>delegates</a>.
-    </dd>
-    <dt><dfn data-lt="delegate">delegate</dfn></dt>
-    <dd>
-        An Ethereum address that received temporary access to a <a>revocation lists</a> in a <a>namespace</a>. It has to be granted by the current <a>owner</a> of the <a>revocation list</a> in question. <a>Delegates</a> can change statuses of credentials in foreign <a>revocation lists</a>.
     </dd>
 </dl>

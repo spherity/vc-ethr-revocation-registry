@@ -12,7 +12,7 @@
     <meta name="theme-color" content="#ffffff">
     <meta http-equiv=" Content-Type" content="text/html;charset=utf-8"/>
 
-    <title>ETHR Revocation Registry 2022</title>
+    <title>Ethr Revocation <a>registry</a> 2022</title>
     <h2 id="subtitle">A registry-based revocation mechanism for Verifiable Credentials</h2>
 
     <script src="https://www.w3.org/Tools/respec/respec-w3c" class="remove" defer></script>
@@ -103,16 +103,18 @@
 <section id="abstract">
     <p>
         This specification describes a decentralized, registry-based revocation mechanism for Verifiable Credentials on
-        Ethereum. It is based on the EIP-5539 standard draft and leverages its described revocation registry smart
-        contract in which revocation information can be stored and modified in an unlimited amount of revocation lists
-        residing in namespaces.
+        Ethereum. It is based on the EIP-5539 standard draft and leverages its described revocation <a>registry</a>
+        smart
+        contract in which revocation information can be stored and modified in an unlimited amount of <a>revocation
+        lists</a>
+        residing in <a>namespaces</a>.
     </p>
 </section>
 <section id="sotd">
     <p>
         Comments regarding all aspects of this document are welcome.
         Please file issues directly on
-        <a href="https://github.com/spherity/vc-ethr-status-registry/">GitHub</a>
+        <a href="https://github.com/spherity/vc-ethr-status-registry/">GitHub</a>.
     </p>
 </section>
 <section class="informative">
@@ -130,7 +132,9 @@
         figure out what credential holder presented which credential to which verifier and when. This especially holds
         true for revocation methods storing the revocation list on an issuer-owned and centralized revocation
         service.
-        Revocation methods like Status List 2021 leverage such an infrastructure but try to minimize privacy concerns
+        Revocation methods like <a target="_blank" rel="noopener noreferrer"
+                                   href="https://w3c-ccg.github.io/vc-status-list-2021/">Status List 2021</a> leverage
+        such an infrastructure but try to minimize privacy concerns
         by using revocation lists encoded in a bitstring. Following this pattern, a verifier verifies a credential by
         retrieving the full revocation list from the issuers server and reading the credential's status from the correct
         position in the bitstring.
@@ -148,13 +152,14 @@
     </p>
     <p>
         The rest of the document proposes a new revocation method based on the EIP-5539 standard draft that leverages a
-        decentralized revocation registry inside an Ethereum smart contract. It allows any Ethereum address to manage an
-        unlimited number of revocation lists in its namespace, where each list can hold an unlimited amount of
-        revocation keys. Because revocation lists are hosted on the blockchain, issuers can't correlate sensitive
-        information anymore, like at what moment a verifier retrieves revocation information. Other positive aspects
-        are the increased herd privacy due to huge namespaces and revocation lists, the infrastructure being always available,
-        infrastructure does not have to be maintained by issuers, and the ability to program smart management features
-        into the registry itself (meta transactions, owner changes, delegation, ...).
+        decentralized revocation <a>registry</a> inside an Ethereum smart contract. It allows any Ethereum address to
+        manage an unlimited number of <a>revocation lists</a> in its <a>namespace</a>, where each list can hold an
+        unlimited amount of revocation keys. Because <a>revocation lists</a> are hosted on the blockchain,
+        issuers can't correlate sensitive information anymore, like at what moment a verifier retrieves revocation
+        information. Other positive aspects are the increased herd privacy due to huge <a>namespaces</a> and
+        <a>revocation lists</a>, the infrastructure being always available, infrastructure does not have to be
+        maintained by issuers, and the ability to program smart management features into the <a>registry</a> itself
+        (meta transactions, <a>owner</a>changes, delegation, ...).
 </section>
 <section class="informative">
     <h3>Terminology</h3>
@@ -162,17 +167,48 @@
 </section>
 <section class="informative">
     <h3>Concept</h3>
-    This section describes the core concepts of this specification. Revocations are stored in revocation lists as a key-value pair of a bytes32 string to a boolean value. The boolean value indicates the status of the revocation key where true is revoked.
-    Revocation lists are identified by a bytes32 string key that are part of a namespace. Namespaces are represented by Ethereum addresses and can, due to the bytes32 size of revocation list keys, can contain an unlimited amount of revocation lists that are implicitly owned by the namespaces address. The described behaviour can be seen in figure 1.
+    This section describes the core concepts of this specification. Revocations are stored in <a>revocation lists</a>
+    as a key-value pair of a bytes32 string to a boolean value. The boolean value indicates the status of the
+    <a>revocation key</a>where true is revoked. <a>Revocation lists</a> are identified by a bytes32 string key that are
+    part of a <a>namespace</a>. <a>Namespaces</a> are represented by Ethereum addresses and can, due to the bytes32
+    size of revocation list keys, can contain an unlimited amount of <a>revocation lists</a> that are implicitly owned
+    by the <a>namespaces</a>address. The described behaviour can be seen in figure 1.
 
     <figure id="bitstring">
         <img style="margin: auto; display: block; width: 100%;"
-             src="assets/registry-concept.svg" alt="diagram showing how multiple namespace nodes are connected to a registry node. Each namespace node points to multiple revocation list nodes that point to multiple revocation key nodes. Each revocation key node has a revoked status inside its node that represents the revocation status of that particular revocation key.">
+             src="assets/registry-concept.svg"
+             alt="diagram showing how multiple namespace nodes are connected to a registry< node. Each namespace node points to multiple revocation list nodes that point to multiple revocation key nodes. Each revocation key node has a revoked status inside its node that represents the revocation status of that particular revocation key.">
         <figcaption style="text-align: center;">
             A visual depiction of the concepts.
         </figcaption>
     </figure>
-</section>
+
+    This architecture enables a decentralized and general-purpose revocation <a>registry</a> that can be used by any
+    Ethereum address without any previous deployment of smart contracts or self-managed infrastructure. Due to amount
+    of Ethereum addresses and the key type of bytes32 for <a>revocation lists</a> and <a>revocation keys</a> , there is
+    an infinite amount of <a>revocation lists</a> and <a>revocation keys</a> that can be stored in the <a>registry</a>.
+    Due to the nature of the underlying data structures used in the registry, all possible <a>namespaces</a> and their
+    <a>revocation lists</a> and <a>revocation keys</a> are already initialized with zero values. This means that there
+    is no writing action needed when issuing a revocable credential with this method. Only when a credential needs to be
+    revoked, data is written to the chain. Consequently, revocation information of a credential is only recorded
+    on-chain when its status is changed.
+
+    The underlying <a>registry</a> also provides multiple management features for <a>namespace</a> owners. These features
+    include:
+    <ul>
+        <li>Delegation: A <a>namespace</a> owner can add <a>delegates</a> to <a>revocation lists</a> it controls to
+            grant writing access to other entities.
+        </li>
+        <li>Owner Change: An <a>owner</a> of a <a>revocation list</a> can give up its writing access to another Ethereum
+            address. The <a>revocation list</a> will stay in its original <a>namespace</a> to not break already issued
+            credentials.
+        </li>
+        <li>Meta Transactions: An <a>owner</a> of a <a>revocation list</a> can generate a proof that can be used by a
+            third party to carry out a writing action in the registry. This might be helpful for off-loading
+            interactions with Ethereum and its costs to someone else.
+        </li>
+    </ul>
+
 </section>
 <section>
     <h2>Data Model</h2>
