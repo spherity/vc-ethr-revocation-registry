@@ -162,6 +162,16 @@
 </section>
 <section class="informative">
     <h3>Concept</h3>
+    This section describes the core concepts of this specification. Revocations are stored in revocation lists as a key-value pair of a bytes32 string to a boolean value. The boolean value indicates the status of the revocation key where true is revoked.
+    Revocation lists are identified by a bytes32 string key that are part of a namespace. Namespaces are represented by Ethereum addresses and can, due to the bytes32 size of revocation list keys, can contain an unlimited amount of revocation lists that are implicitly owned by the namespaces address. The described behaviour can be seen in figure 1.
+
+    <figure id="bitstring">
+        <img style="margin: auto; display: block; width: 100%;"
+             src="assets/registry-concept.svg" alt="diagram showing how multiple namespace nodes are connected to a registry node. Each namespace node points to multiple revocation list nodes that point to multiple revocation key nodes. Each revocation key node has a revoked status inside its node that represents the revocation status of that particular revocation key.">
+        <figcaption style="text-align: center;">
+            A visual depiction of the concepts.
+        </figcaption>
+    </figure>
 </section>
 </section>
 <section>
