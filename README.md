@@ -1,6 +1,6 @@
 # EthrRevocationRegistry2022 for Verifiable Credentials
 
-This specification describes a decentralized, registry-based revocation mechanism for Verifiable Credentials on Ethereum. It is based on the EIP-5538 standard draft and leverages its described revocation registry smart contract in which revocation information can be stored and modified in an unlimited amount of revocation lists residing in namespaces.
+This specification describes a decentralized, registry-based revocation mechanism for Verifiable Credentials on Ethereum. It is based on the EIP-5539 standard draft and leverages its described revocation registry smart contract in which revocation information can be stored and modified in an unlimited amount of revocation lists residing in namespaces.
 
 https://spherity.github.io/vc-ethr-revocation-registry/
 
