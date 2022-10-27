@@ -1,7 +1,7 @@
 {
   "@context": {
       "@protected": true,
-      "EthrRevocationRegistry": {
+      "EthrRevocationRegistry2022": {
         "@id": "https://w3id.org/identity/v1",
         "@context": {
             "@protected": true,
